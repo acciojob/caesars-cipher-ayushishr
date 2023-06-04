@@ -1,15 +1,27 @@
-const bands = ["The Rolling Stones", "Pink Floyd", "The Beatles", "Led Zeppelin", "Nirvana"];
+// Your Script here.
 
-function stripArticle(name) {
-  return name.replace(/^(a |an |the )/i, "").trim();
+const lookup = {
+  'A': 'N','B': 'O','C': 'P','D': 'Q',
+  'E': 'R','F': 'S','G': 'T','H': 'U',
+  'I': 'V','J': 'W','K': 'X','L': 'Y',
+  'M': 'Z','N': 'A','O': 'B','P': 'C',
+  'Q': 'D','R': 'E','S': 'F','T': 'G',
+  'U': 'H','V': 'I','W': 'J','X': 'K',
+  'Y': 'L','Z': 'M', '?': '?', ',': ','
+};
+
+function rot13(encodedStr){
+   let decodedArr = []; 
+	for(let i=0; i<encodedStr.length; i++){
+		if(lookup[encodedStr[i]]===undefined){
+			decodedArr.push(encodedStr[i]);
+		}else{
+			decodedArr.push(lookup[encodedStr[i]);
+		}
+	}
+  return decodedArr;
 }
+console.log(rot13("#AB"));
 
-const sortedBands = bands.sort((a, b) => stripArticle(a) > stripArticle(b) ? 1 : -1);
 
-// Render the sorted band names without articles
-const ul = document.querySelector("ul");
-sortedBands.forEach(band => {
-  const li = document.createElement("li");
-  li.textContent = band;
-  ul.appendChild(li);
-});
+module.exports = rot13;
